@@ -39,6 +39,8 @@ const registerServiceWorker = async () => {
         }
 
         console.log("Service Worker registered successfully!", registration);
+
+        // registration.showNotification('Hello world'); // show notification
         // return registration;
     } catch (error) {
         console.error("Error:", error.toString());
