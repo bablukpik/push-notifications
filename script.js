@@ -22,14 +22,25 @@ const askForNotificationPermission = async () => {
     return permission;
 }
 
-const registerSW = async () => {
+const registerServiceWorker = async () => {
     try {
         checkPermissions();
         await askForNotificationPermission();
-        const registration = await navigator.serviceWorker.register('sw.js');
+        const registration = await navigator.serviceWorker.register('sw.js', {
+            scope: "/",
+        });
+
+        if (registration.installing) {
+            console.log("Service worker installing");
+        } else if (registration.waiting) {
+            console.log("Service worker installed");
+        } else if (registration.active) {
+            console.log("Service worker active");
+        }
+
         console.log("Service Worker registered successfully!", registration);
-        return registration;
+        // return registration;
     } catch (error) {
-        console.error("Error:", error.message);
+        console.error("Error:", error.toString());
     }
 };
