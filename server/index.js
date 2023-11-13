@@ -12,8 +12,8 @@ const PORT = process.env.PORT ?? 8000;
 
 // application server key using web-push
 const vapidKeys = {
-    publicKey: "BANBteLufa0tEzsgxpyMFOamDP_n093GRE-AvxktVkv0HzL_Sqi1k4lkOt6ByataMePCkk41ZdbClCFskLY55KE",
-    privateKey: "9Lufq8iZtfxCMbfxDuVXhm9XobwNOYqv_l8FMCQM2gs",
+    publicKey: process.env.PUBLIC_KEY ?? '',
+    privateKey: process.env.PRIVATE_KEY ?? '',
 }
 
 webpush.setVapidDetails(
