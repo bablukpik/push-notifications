@@ -15,7 +15,7 @@ const urlBase64ToUint8Array = base64String => {
 }
 
 const saveSubscription = async (subscription) => {
-  const response = await fetch('http://localhost:8000/save-subscription', {
+  const response = await fetch('http://localhost:8000/api/save-subscription', {
     method: 'post',
     headers: { 'Content-Type': "application/json" },
     body: JSON.stringify(subscription)
@@ -27,8 +27,10 @@ const saveSubscription = async (subscription) => {
 self.addEventListener("activate", async (e) => {
   const subscription = await self.registration.pushManager.subscribe({
     userVisibleOnly: true,
-    applicationServerKey: urlBase64ToUint8Array("YOUR_PUBLIC_KEY")
-  })
+    applicationServerKey: "BANBteLufa0tEzsgxpyMFOamDP_n093GRE-AvxktVkv0HzL_Sqi1k4lkOt6ByataMePCkk41ZdbClCFskLY55KE"
+  });
+
+  console.log(subscription)
 
   const response = await saveSubscription(subscription)
   console.log(response)
@@ -45,3 +47,5 @@ self.addEventListener("push", e => {
 
 // Private Key:
 // B1ZN5YwGopOa6ZAAfaMd9Hi8yzwYt6sGDd7POFre5P4
+
+console.log(self)
